@@ -1,9 +1,10 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UsersService } from "./users.service";
-import { ApiOperation, ApiResponse } from "@nestjs/swagger";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { User } from "./users.model";
 
+@ApiTags("Users")
 @Controller("users")
 export class UsersController {
   constructor(private usersService: UsersService) {}
@@ -23,7 +24,7 @@ export class UsersController {
   @ApiResponse({
     status: 200,
     description: "List of users retrieved successfully.",
-    type: User,
+    type: [User],
   })
   @Get()
   getAll() {
